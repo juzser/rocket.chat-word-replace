@@ -1,0 +1,15 @@
+{
+    "id": "c3ebd3f3-8857-4793-87e8-9d09d3ecc541",
+    "version": "0.0.1",
+    "requiredApiVersion": "^1.4.0",
+    "iconFile": "icon.png",
+    "author": {
+        "name": "JuzSer",
+        "homepage": "https://github.com/JuzSer",
+        "support": "https://github.com/JuzSer"
+    },
+    "name": "Word Replace",
+    "nameSlug": "word-replace",
+    "classFile": "WordReplaceApp.ts",
+    "description": "Replace defined words"
+}

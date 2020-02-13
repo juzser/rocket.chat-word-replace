@@ -1,0 +1,4 @@
+{
+    "app_label": "Replace List",
+    "app_description": "[{ \"source\": \"hello\", \"replacement\": \"world\"}]"
+}
