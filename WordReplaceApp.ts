@@ -66,9 +66,11 @@ export class WordReplaceApp extends App implements IPreMessageSentModify {
 
             const source = filter.source.replace(/([^\w])/g, '\\\$1'); // double parse to keep a slash in pattern
 
-            // Only select the source between spaces OR at beginning/end of line but without slash character (`)
-            const pattern = `(?<!\\w|\\\`\\\`\\\`|\\\`.*)(?:\\s)*(${source})(?:\\s)*(?![\\w!@#$%^&*()-+<>?;'{}\\[\\]\\/\\:])`;
-            text = text.replace(new RegExp(pattern || '', 'gi'), ` ${filter.replacement} ` || '');
+            if (text.includes(filter.source)) {
+                // Only select the source between spaces OR at beginning/end of line but without slash character (`)
+                const pattern = `(?<!\\w|\\\`\\\`\\\`|\\\`.*)(?:\\s)*(${source})(?:\\s)*(?![\\w!@#$%^&*()-+<>?;'{}\\[\\]\\/\\:])`;
+                text = text.replace(new RegExp(pattern || '', 'gi'), ` ${filter.replacement} ` || '');
+            }
         });
 
         return builder.setText(text).getMessage();
@@ -78,7 +80,7 @@ export class WordReplaceApp extends App implements IPreMessageSentModify {
     protected async extendConfiguration(configuration: IConfigurationExtend, environmentRead: IEnvironmentRead): Promise<void> {
         await configuration.settings.provideSetting({
             id: 'replaceList',
-            type: SettingType.STRING,
+            type: SettingType.CODE,
             packageValue: '',
             required: false,
             public: false,
